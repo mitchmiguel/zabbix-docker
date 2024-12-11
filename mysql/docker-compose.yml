@@ -44,7 +44,7 @@ services:
     container_name: agent
     restart: unless-stopped
     ports:
-      - 10050:10050
+      - "10052:10050"
     environment:
       ZBX_ACTIVE_ALLOW: false
       TZ: ${TZ}
