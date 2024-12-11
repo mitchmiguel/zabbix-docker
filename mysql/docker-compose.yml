@@ -4,7 +4,7 @@ services:
     container_name: server
     restart: unless-stopped
     ports:
-      - "10051:10051"
+      - 10051:10051
     environment:
       DB_SERVER_HOST: mysql
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
@@ -12,6 +12,8 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       ZBX_STARTVMWARECOLLECTORS: 5
+      ZBX_VMWARETIMEOUT: 60
+      ZBX_DEBUGLEVEL: 4
     depends_on:
       - mysql
     networks:
@@ -22,8 +24,8 @@ services:
     restart: unless-stopped
     container_name: frontend
     ports:
-      - "8080:8080"
-      - "8443:8443"
+      - 8080:8080
+      - 8443:8443
     environment:
       DB_SERVER_HOST: mysql
       MYSQL_USER: ${MYSQL_USER}
@@ -42,7 +44,7 @@ services:
     container_name: agent
     restart: unless-stopped
     ports:
-      - "10050:10050"
+      - 10050:10050
     environment:
       ZBX_ACTIVE_ALLOW: false
       TZ: ${TZ}
@@ -60,7 +62,7 @@ services:
     container_name: mysql
     restart: unless-stopped
     ports:
-      - "5432:5432"
+      - 3306:3306
     volumes:
       - mysql:/var/lib/mysql
     environment:
